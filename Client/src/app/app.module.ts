@@ -11,6 +11,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import { CreateSessionComponent } from './create-session/create-session.component';
 import { StartScreenComponent } from './start-screen/start-screen.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { StartScreenComponent } from './start-screen/start-screen.component';
     NbEvaIconsModule,
     AppRoutingModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
