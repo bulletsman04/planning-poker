@@ -9,11 +9,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { JoinScreenComponent } from './join-screen/join-screen.component';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
+import { CreateSessionComponent } from './create-session/create-session.component';
+import { StartScreenComponent } from './start-screen/start-screen.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    JoinScreenComponent
+    JoinScreenComponent,
+    CreateSessionComponent,
+    StartScreenComponent
   ],
   imports: [
     BrowserModule,
