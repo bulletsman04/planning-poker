@@ -1,8 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using BetterPointingPoker.Server.Web.Hubs;
+using BetterPointingPoker.Server.Web.Services;
+using BetterPointingPoker.Server.Web.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -18,6 +16,9 @@ namespace BetterPointingPoker.Server.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSignalR();
+
+            services.AddSingleton<ISessionManager, SessionManager>();
+
             services.AddCors(o => o.AddPolicy("CorsPolicy", builder =>
             {
                 builder
