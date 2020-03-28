@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
+import { SignalRService } from '../services/signal-r.service';
 
 @Component({
   selector: 'app-create-session',
@@ -9,9 +10,11 @@ import {FormControl, Validators} from '@angular/forms';
 export class CreateSessionComponent implements OnInit {
   nick = new FormControl('', [Validators.required]);
 
-  constructor() { }
+  constructor(private signalR: SignalRService) { }
 
   ngOnInit(): void {
+    this.signalR.createConnection('start-session', 'start-session');
+    this.signalR.registerHandler('start-session', 'SessionStarted', this.sessionStarted);
   }
 
   getErrorMessage() {
@@ -20,6 +23,14 @@ export class CreateSessionComponent implements OnInit {
     }
 
     return this.nick.hasError('email') ? 'Not a valid email' : '';
+  }
+
+  createSession(){
+    this.signalR.sendRequest('start-session', 'CreateSession', this.nick.value);
+  }
+
+  sessionStarted(sessionId){
+    alert(`Session started with id ${sessionId}!`);
   }
 
 }

@@ -17,7 +17,7 @@ export class SignalRService {
     this.events = [];
    }
 
-  createConnection(key, hubName, errorsHandler) {
+  public createConnection(key: string, hubName: string) {
 
     if (this.connections[key]) {
       return Promise.resolve();
@@ -45,7 +45,7 @@ export class SignalRService {
   }
 
 
-  registerHandler(hubKey, functionName, handler) {
+  public registerHandler(hubKey: string | number, functionName: any, handler: any) {
 
     for (let i = 0; i < this.events.length; i++) {
       if (this.events[i].hubKey === hubKey && this.events[i].functionName === functionName) {
@@ -57,7 +57,7 @@ export class SignalRService {
     this.events.push({ hubKey, functionName });
   }
 
-  unregisterHandlers() {
+  public unregisterHandlers() {
     this.events.forEach(event => {
       this.connections[event.hubKey].off(event.functionName);
     });
@@ -65,7 +65,7 @@ export class SignalRService {
     this.events = null;
   }
 
-  sendRequest(hubKey, serverMethodName, ...params) {
+  public sendRequest(hubKey: string | number, serverMethodName: any, ...params: any[]) {
     if (!this.connections || !this.connections[hubKey]) {
       throw new Error('Connection not yet established');
     }
@@ -89,7 +89,7 @@ export class SignalRService {
     });
   }
 
-  isConnectionReady(hubKey) {
+  public isConnectionReady(hubKey: string | number) {
     return (
       this.connections[hubKey].state === signalR.HubConnectionState.Connected
     );

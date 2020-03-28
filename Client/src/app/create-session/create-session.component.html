@@ -5,6 +5,6 @@
       <input matInput  [formControl]="nick" required>
       <mat-error *ngIf="nick.invalid">{{getErrorMessage()}}</mat-error>
     </mat-form-field>
-    <button type="button" mat-raised-button color="primary" [disabled]="nick.invalid">Create</button>
+    <button type="button" mat-raised-button color="primary" [disabled]="nick.invalid" (click)="createSession()">Create</button>
   </form>
 </div>
