@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 import { SignalRService } from '../services/signal-r.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-session',
@@ -10,11 +11,11 @@ import { SignalRService } from '../services/signal-r.service';
 export class CreateSessionComponent implements OnInit {
   nick = new FormControl('', [Validators.required]);
 
-  constructor(private signalR: SignalRService) { }
+  constructor(private signalR: SignalRService, private router: Router) { }
 
   ngOnInit(): void {
     this.signalR.createConnection('start-session', 'start-session');
-    this.signalR.registerHandler('start-session', 'SessionStarted', this.sessionStarted);
+    this.signalR.registerHandler('start-session', 'SessionStarted', this.sessionStarted.bind(this));
   }
 
   getErrorMessage() {
@@ -30,7 +31,7 @@ export class CreateSessionComponent implements OnInit {
   }
 
   sessionStarted(sessionId){
-    alert(`Session started with id ${sessionId}!`);
+    this.router.navigate(['/', 'session']);
   }
 
 }

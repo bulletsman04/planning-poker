@@ -12,6 +12,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { CreateSessionComponent } from './create-session/create-session.component';
 import { StartScreenComponent } from './start-screen/start-screen.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { SessionMainComponent } from './session-main/session-main.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     AppComponent,
     JoinScreenComponent,
     CreateSessionComponent,
-    StartScreenComponent
+    StartScreenComponent,
+    SessionMainComponent
   ],
   imports: [
     BrowserModule,

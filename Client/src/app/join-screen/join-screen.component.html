@@ -1,16 +1,17 @@
     <div class="dialog">
-      <form class="dialog-form">
+      <form class="dialog-form" [formGroup]="form">
         <mat-form-field class="full-width">
           <mat-label>Session id</mat-label>
-          <input matInput placeholder="1q2w3e4r" [formControl]="sessionId">
-          <mat-error *ngIf="nick.invalid">{{getSessionErrorMessage()}}</mat-error>
+          <input autocomplete="off" matInput placeholder="1q2w3e4r" formControlName="sessionId">
+          <mat-error *ngIf="form.get('sessionId').invalid">{{getSessionErrorMessage()}}</mat-error>
         </mat-form-field>
 
         <mat-form-field class="full-width">
           <mat-label>Nick</mat-label>
-          <input matInput  [formControl]="nick">
-          <mat-error *ngIf="nick.invalid">{{getNickErrorMessage()}}</mat-error>
+          <input autocomplete="off" matInput  formControlName="nick">
+          <mat-error *ngIf="form.get('nick').invalid">{{getNickErrorMessage()}}</mat-error>
         </mat-form-field>
-        <button type="button" mat-raised-button color="primary" (click)="joinSession()">Join</button>
+        <div class="full-width error-div" *ngIf="joinError">{{joinError}}</div>
+        <button type="button" mat-raised-button color="primary" [disabled]="form.invalid" (click)="joinSession()">Join</button>
       </form>
     </div>
