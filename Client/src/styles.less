@@ -1,5 +1,54 @@
 /* You can add global styles to this file, and also import other style files */
+@import './app/shared-styles/shared.less';
+
 
 html, body { height: 100%;  }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background: rgb(2,0,36);
   background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(68,9,140,1) 35%, rgba(96,4,182,1) 100%);  }
+
+
+.dialog-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  button{
+    width: 80px;
+  }
+
+  .responsive(500px, {
+    min-width: 0;
+
+  });
+}
+
+.full-width {
+  width: 100%;
+}
+
+.dialog{
+  display: flex;
+  justify-content: center;
+  width: 35vw;
+  min-width: 350px;
+  margin: 0;
+  top: 50%;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  padding: 25px 20px;
+
+  mat-label, input {
+    color: white;
+  }
+
+  .responsive(500px, {
+    min-width: 0;
+    width: 90vw;
+  });
+}
+
+
