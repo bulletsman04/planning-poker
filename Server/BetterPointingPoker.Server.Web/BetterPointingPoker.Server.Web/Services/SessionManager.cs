@@ -26,8 +26,14 @@ namespace BetterPointingPoker.Server.Web.Services
             return id;
         }
 
-        public bool JoinSession(string nickname, string sessionId)
+        public (bool joined, string error) JoinSession(string nickname, string sessionId)
         {
+            var canJoinWithError = CanJoinSession(nickname, sessionId);
+            if (!canJoinWithError.canJoin)
+            {
+                return canJoinWithError;
+            }
+
             var session = Sessions[sessionId];
             var result = session.JoinSession(nickname);
 
@@ -40,6 +46,19 @@ namespace BetterPointingPoker.Server.Web.Services
             var result = session.LeaveSession(nickname);
 
             return result;
+        }
+
+        public (bool canJoin, string error) CanJoinSession(string nickname, string sessionId)
+        {
+            bool sessionExists = Sessions.ContainsKey(sessionId);
+            if (!sessionExists)
+            {
+                return (false, $"Session with id {sessionId} does not exist");
+            }
+
+            var canJoin = Sessions[sessionId].CanJoinSession(nickname);
+
+            return canJoin;
         }
     }
 }

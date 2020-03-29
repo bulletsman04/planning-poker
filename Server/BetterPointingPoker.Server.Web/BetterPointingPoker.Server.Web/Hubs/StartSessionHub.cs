@@ -21,5 +21,17 @@ namespace BetterPointingPoker.Server.Web.Hubs
             var id = _sessionManager.CreateSession(creator);
             Clients.Caller.SendAsync("SessionStarted", id);
         }
+
+        public void CanJoinSession(string nickname, string sessionId)
+        {
+            var canJoinWithError = _sessionManager.CanJoinSession(nickname, sessionId);
+            Clients.Caller.SendAsync("CanJoin", canJoinWithError.canJoin, canJoinWithError.error);
+        }
+
+        public void JoinSession(string nickname, string sessionId)
+        {
+            var joinedWithError = _sessionManager.JoinSession(nickname, sessionId);
+            Clients.Caller.SendAsync("JoinSession", joinedWithError.joined, joinedWithError.error);
+        }
     }
 }

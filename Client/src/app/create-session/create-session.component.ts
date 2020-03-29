@@ -22,7 +22,7 @@ export class CreateSessionComponent implements OnInit {
       return 'You must enter a value';
     }
 
-    return this.nick.hasError('email') ? 'Not a valid email' : '';
+    return '';
   }
 
   createSession(){

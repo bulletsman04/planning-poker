@@ -8,7 +8,8 @@ namespace BetterPointingPoker.Server.Web.Services.Interfaces
     public interface ISessionManager
     {
         string CreateSession(string creator);
-        bool JoinSession(string nickname, string sessionId);
+        (bool canJoin, string error) CanJoinSession(string nickname, string sessionId);
+        (bool joined, string error) JoinSession(string nickname, string sessionId);
         bool LeaveSession(string nickname, string sessionId);
 
     }

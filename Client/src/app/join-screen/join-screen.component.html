@@ -2,13 +2,15 @@
       <form class="dialog-form">
         <mat-form-field class="full-width">
           <mat-label>Session id</mat-label>
-          <input matInput placeholder="123456" />
+          <input matInput placeholder="1q2w3e4r" [formControl]="sessionId">
+          <mat-error *ngIf="nick.invalid">{{getSessionErrorMessage()}}</mat-error>
         </mat-form-field>
 
         <mat-form-field class="full-width">
           <mat-label>Nick</mat-label>
-          <input matInput>
+          <input matInput  [formControl]="nick">
+          <mat-error *ngIf="nick.invalid">{{getNickErrorMessage()}}</mat-error>
         </mat-form-field>
-        <button type="button" mat-raised-button color="primary">Join</button>
+        <button type="button" mat-raised-button color="primary" (click)="joinSession()">Join</button>
       </form>
     </div>

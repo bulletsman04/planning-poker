@@ -21,18 +21,18 @@ namespace BetterPointingPoker.Server.Web.Models
             _users.Add(owner, _owner);
         }
 
-        public bool JoinSession(string nickname)
+        public (bool joined, string error) JoinSession(string nickname)
         {
-            bool userAlreadyExists = _users.ContainsKey(nickname);
-            if (userAlreadyExists)
+            var canJoinWithError = CanJoinSession(nickname);
+            if (!canJoinWithError.canJoin)
             {
-                return false;
+                return canJoinWithError;
             }
 
             var newUser = new User(nickname);
             _users.Add(nickname, newUser);
 
-            return true;
+            return (true, null);
         }
 
         public bool LeaveSession(string nickname)
@@ -46,6 +46,17 @@ namespace BetterPointingPoker.Server.Web.Models
             _users.Remove(nickname);
 
             return true;
+        }
+
+        public (bool canJoin, string error) CanJoinSession(string nickname)
+        {
+            bool userAlreadyExists = _users.ContainsKey(nickname);
+            if (userAlreadyExists)
+            {
+                return (false, "User already exists");
+            }
+
+            return (true, null);
         }
     }
 }
