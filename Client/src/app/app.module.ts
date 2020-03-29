@@ -13,7 +13,7 @@ import { CreateSessionComponent } from './create-session/create-session.componen
 import { StartScreenComponent } from './start-screen/start-screen.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { SessionMainComponent } from './session-main/session-main.component';
-
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -32,6 +32,7 @@ import { SessionMainComponent } from './session-main/session-main.component';
     AppRoutingModule,
     MatInputModule,
     MatButtonModule,
+    MatIconModule,
     FormsModule,
     ReactiveFormsModule
   ],
