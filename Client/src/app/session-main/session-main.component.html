@@ -1,1 +1,20 @@
-<p>session-main works!</p>
+<div style="color: white;">
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Vote</th>
+    </tr>
+    <tr *ngFor="let user of session.users">
+      <td>{{user.nickName}}</td>
+      <td>{{user.voteValue}}</td>
+    </tr>
+  </table>
+</div>
+<div>
+  <button>Show votes</button>
+  <button>Clear votes</button>
+  <button *ngFor="let val of voteOptions" (click)="vote(val)">{{val}}</button>
+</div>
+<div style="color: white;">
+  Average: {{session.average}}
+</div>
