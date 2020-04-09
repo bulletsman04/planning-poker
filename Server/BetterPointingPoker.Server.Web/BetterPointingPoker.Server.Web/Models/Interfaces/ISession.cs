@@ -7,8 +7,14 @@ namespace BetterPointingPoker.Server.Web.Models.Interfaces
 {
     public interface ISession
     {
-        (bool canJoin, string error) CanJoinSession(string nickname);
-        (bool joined, string error) JoinSession(string nickname);
-        bool LeaveSession(string nickname);
+        public IDictionary<string, IUser> Users { get; }
+        (bool canJoin, string error) CanJoinSession(string userId);
+        (bool joined, string error) JoinSession(string nickname, string userId);
+        bool LeaveSession(string userId);
+        void Vote(string userId, double? vote);
+        void ClearVote(string userId);
+        void ClearAllVotes();
+        void ShowVotes();
+        void KeepAlive(string userId);
     }
 }

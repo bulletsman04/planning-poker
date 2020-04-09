@@ -43,7 +43,6 @@ namespace BetterPointingPoker.Server.Web
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapHub<StartSessionHub>("/start-session");
                 endpoints.MapHub<ManageSessionHub>("/manage-session");
 
                 endpoints.MapGet("/", async context =>

@@ -8,20 +8,21 @@ namespace BetterPointingPoker.Server.Web.Models
 {
     public class Session : ISession
     {
-        private readonly IDictionary<string, User> _users;
-        private User _owner;
+        private IUser _owner;
         public double Average { get; set; }
         public string SessionId { get; set; }
 
-        public Session(string owner, string sessionId)
+        public IDictionary<string, IUser> Users { get; }
+
+        public Session(string owner, string sessionId, string userId)
         {
-            _users = new Dictionary<string, User>();
+            Users = new Dictionary<string, IUser>();
             SessionId = sessionId;
-            _owner = new User(owner);
-            _users.Add(owner, _owner);
+            _owner = new User(owner, userId);
+            Users.Add(userId, _owner);
         }
 
-        public (bool joined, string error) JoinSession(string nickname)
+        public (bool joined, string error) JoinSession(string nickname, string userId)
         {
             var canJoinWithError = CanJoinSession(nickname);
             if (!canJoinWithError.canJoin)
@@ -29,34 +30,69 @@ namespace BetterPointingPoker.Server.Web.Models
                 return canJoinWithError;
             }
 
-            var newUser = new User(nickname);
-            _users.Add(nickname, newUser);
+            var newUser = new User(nickname, userId);
+            Users.Add(userId, newUser);
 
             return (true, null);
         }
 
-        public bool LeaveSession(string nickname)
+        public bool LeaveSession(string userId)
         {
-            bool userExists = _users.ContainsKey(nickname);
+            bool userExists = Users.ContainsKey(userId);
             if (!userExists)
             {
                 return false;
             }
 
-            _users.Remove(nickname);
+            Users.Remove(userId);
 
             return true;
         }
 
         public (bool canJoin, string error) CanJoinSession(string nickname)
         {
-            bool userAlreadyExists = _users.ContainsKey(nickname);
+            bool userAlreadyExists = Users.Values.Any(user => user.NickName == nickname);
             if (userAlreadyExists)
             {
                 return (false, "User already exists");
             }
 
             return (true, null);
+        }
+
+        public void Vote(string userId, double? vote)
+        {
+            Users[userId].Vote(vote);
+            // notify others here or in SessionManager
+        }
+
+        public void ClearVote(string userId)
+        {
+            Users[userId].ClearVote();
+            // notify others here or in SessionManager
+        }
+
+        public void ClearAllVotes()
+        {
+            foreach (var user in Users.Values)
+            {
+                user.ClearVote();
+            }
+            // notify others here or in SessionManager
+        }
+
+        public void ShowVotes()
+        {
+            // either send here users-votes dict or return it up
+        }
+
+        public void KeepAlive(string userId)
+        {
+            var user = Users.Values.FirstOrDefault(user => user.Id == userId);
+            if (user != null)
+            {
+                user.LastUpdated = DateTime.Now;   
+            }
         }
     }
 }
