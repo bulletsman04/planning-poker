@@ -51,7 +51,7 @@ export class SessionService {
   vote(value: number) {
     let user = this._users.find(u => u.nickName === this.user);
     user.voteValue = value;
-    //this.signalR.sendRequest('manage-session', 'Vote', this.sessionId, value);
+    this.signalR.sendRequest('manage-session', 'Vote', this.sessionId, value);
   }
 
 

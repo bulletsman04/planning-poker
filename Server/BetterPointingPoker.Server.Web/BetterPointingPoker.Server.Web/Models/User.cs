@@ -15,6 +15,10 @@ namespace BetterPointingPoker.Server.Web.Models
         public bool Voted { get; set; }
         public DateTime LastUpdated { get; set; }
 
+        public User()
+        {
+
+        }
         public User(string nickName, string id)
         {
             NickName = nickName;

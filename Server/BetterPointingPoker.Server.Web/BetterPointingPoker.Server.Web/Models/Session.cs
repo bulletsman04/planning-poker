@@ -9,10 +9,22 @@ namespace BetterPointingPoker.Server.Web.Models
     public class Session : ISession
     {
         private IUser _owner;
+
         public double Average { get; set; }
         public string SessionId { get; set; }
+        public bool VotesVisible { get; set; }
 
         public IDictionary<string, IUser> Users { get; }
+
+        public IEnumerable<IUser> GetUsersList()
+        {
+            return Users.Values.Select(user => new User
+            {
+                NickName = user.NickName,
+                Voted = user.Voted,
+                VoteValue = VotesVisible ? user.VoteValue : null
+            });
+        }
 
         public Session(string owner, string sessionId, string userId)
         {
@@ -83,7 +95,7 @@ namespace BetterPointingPoker.Server.Web.Models
 
         public void ShowVotes()
         {
-            // either send here users-votes dict or return it up
+            // either send here Users-votes dict or return it up
         }
 
         public void KeepAlive(string userId)
@@ -91,7 +103,7 @@ namespace BetterPointingPoker.Server.Web.Models
             var user = Users.Values.FirstOrDefault(user => user.Id == userId);
             if (user != null)
             {
-                user.LastUpdated = DateTime.Now;   
+                user.LastUpdated = DateTime.Now;
             }
         }
     }

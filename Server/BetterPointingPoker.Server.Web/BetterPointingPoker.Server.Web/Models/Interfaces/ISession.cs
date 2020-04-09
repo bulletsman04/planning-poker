@@ -16,5 +16,6 @@ namespace BetterPointingPoker.Server.Web.Models.Interfaces
         void ClearAllVotes();
         void ShowVotes();
         void KeepAlive(string userId);
+        IEnumerable<IUser> GetUsersList();
     }
 }

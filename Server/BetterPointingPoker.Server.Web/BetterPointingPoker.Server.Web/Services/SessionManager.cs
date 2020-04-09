@@ -45,7 +45,7 @@ namespace BetterPointingPoker.Server.Web.Services
 
             foreach (var user in session.Users.Values)
             {
-                _manageSessionHub.Clients.Client(user.Id).SendAsync("UserJoined", session.Users.Values.ToList());
+                _manageSessionHub.Clients.Client(user.Id).SendAsync("UserJoined", session.GetUsersList());
             }
 
             return result;
@@ -65,7 +65,7 @@ namespace BetterPointingPoker.Server.Web.Services
 
             foreach (var user in session.Users.Values)
             {
-                _manageSessionHub.Clients.Client(user.Id).SendAsync("SessionInfo", session.Users.Values.ToList());
+                _manageSessionHub.Clients.Client(user.Id).SendAsync("SessionInfo", session.GetUsersList());
             }
 
 
@@ -139,7 +139,7 @@ namespace BetterPointingPoker.Server.Web.Services
             }
             var session = Sessions[sessionId];
 
-            return session.Users.Values;
+            return session.GetUsersList();
         }
 
         public void KeepAlive(string userId, string sessionId)
@@ -168,7 +168,7 @@ namespace BetterPointingPoker.Server.Web.Services
 
                     foreach (var user in session.Users.Values)
                     {
-                        _manageSessionHub.Clients.Client(user.Id).SendAsync("SessionInfo", session.Users.Values.ToList());
+                        _manageSessionHub.Clients.Client(user.Id).SendAsync("SessionInfo", session.GetUsersList());
                     }
                 }
             }
