@@ -30,7 +30,7 @@ namespace BetterPointingPoker.Server.Web.Hubs
 
         public void SessionInfo(string sessionId)
         {
-            var info = _sessionManager.GetSessionInfo(sessionId);
+            var info = _sessionManager.GetSessionInfo(sessionId, Context.ConnectionId);
             Clients.Caller.SendAsync("SessionInfo", info);
         }
 
@@ -47,6 +47,11 @@ namespace BetterPointingPoker.Server.Web.Hubs
         public void Vote(string sessionId, double voteValue)
         {
             _sessionManager.Vote(Context.ConnectionId, sessionId, voteValue);
+        }
+
+        public void ShowVotes(string sessionId)
+        {
+            _sessionManager.ShowVotes(sessionId);
         }
     }
 }

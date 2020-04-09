@@ -36,4 +36,8 @@ export class SessionMainComponent implements OnInit {
   public vote(value: number){
     this.session.vote(value);
   }
+
+  public showVotes(){
+    this.session.showVotes();
+  }
 }

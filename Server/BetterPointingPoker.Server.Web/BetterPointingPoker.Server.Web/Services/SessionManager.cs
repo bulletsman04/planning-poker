@@ -43,11 +43,7 @@ namespace BetterPointingPoker.Server.Web.Services
             var session = Sessions[sessionId];
             var result = session.JoinSession(nickname, userId);
 
-            foreach (var user in session.Users.Values)
-            {
-                _manageSessionHub.Clients.Client(user.Id).SendAsync("UserJoined", session.GetUsersList());
-            }
-
+            SendToAll(session);
             return result;
         }
 
@@ -63,10 +59,7 @@ namespace BetterPointingPoker.Server.Web.Services
             var session = Sessions[sessionId];
             var result = session.LeaveSession(userId);
 
-            foreach (var user in session.Users.Values)
-            {
-                _manageSessionHub.Clients.Client(user.Id).SendAsync("SessionInfo", session.GetUsersList());
-            }
+            SendToAll(session);
 
 
             return result;
@@ -92,6 +85,7 @@ namespace BetterPointingPoker.Server.Web.Services
             {
                 var session = Sessions[sessionId];
                 session.Vote(userId, vote);
+                SendToAll(session);
             }
         }
 
@@ -122,6 +116,8 @@ namespace BetterPointingPoker.Server.Web.Services
             {
                 var session = Sessions[sessionId];
                 session.ShowVotes();
+
+                SendToAll(session);
             }
         }
 
@@ -130,7 +126,7 @@ namespace BetterPointingPoker.Server.Web.Services
             // send info to hide votes (but need users here...)
         }
 
-        public object GetSessionInfo(string sessionId)
+        public object GetSessionInfo(string sessionId, string userId)
         {
             bool sessionExists = Sessions.ContainsKey(sessionId);
             if (!sessionExists)
@@ -139,7 +135,12 @@ namespace BetterPointingPoker.Server.Web.Services
             }
             var session = Sessions[sessionId];
 
-            return session.GetUsersList();
+            return session.GetUsersList().Select(user => new User()
+            {
+                NickName = user.NickName,
+                VoteValue = session.VotesVisible || user.Id == userId ? user.VoteValue : null,
+                Voted = user.Voted
+            });
         }
 
         public void KeepAlive(string userId, string sessionId)
@@ -155,8 +156,8 @@ namespace BetterPointingPoker.Server.Web.Services
 
                 foreach (var user in session.Users.Values)
                 {
-                   
-                   if(DateTime.Now - user.LastUpdated > _maxAfkTime)
+
+                    if (DateTime.Now - user.LastUpdated > _maxAfkTime)
                     {
                         needToUpdate = true;
                         session.LeaveSession(user.Id);
@@ -165,12 +166,22 @@ namespace BetterPointingPoker.Server.Web.Services
 
                 if (needToUpdate)
                 {
-
-                    foreach (var user in session.Users.Values)
-                    {
-                        _manageSessionHub.Clients.Client(user.Id).SendAsync("SessionInfo", session.GetUsersList());
-                    }
+                    SendToAll(session);
                 }
+            }
+        }
+
+        public void SendToAll(ISession session)
+        {
+            foreach (var user in session.Users.Values)
+            {
+                _manageSessionHub.Clients.Client(user.Id).SendAsync("SessionInfo", session.GetUsersList()
+                    .Select(u => new User()
+                    {
+                        NickName = u.NickName,
+                        VoteValue = session.VotesVisible || user.Id == u.Id ? u.VoteValue : null,
+                        Voted = u.Voted
+                    }));
             }
         }
     }

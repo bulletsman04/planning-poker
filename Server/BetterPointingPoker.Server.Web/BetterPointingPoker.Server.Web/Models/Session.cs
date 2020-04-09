@@ -18,12 +18,7 @@ namespace BetterPointingPoker.Server.Web.Models
 
         public IEnumerable<IUser> GetUsersList()
         {
-            return Users.Values.Select(user => new User
-            {
-                NickName = user.NickName,
-                Voted = user.Voted,
-                VoteValue = VotesVisible ? user.VoteValue : null
-            });
+            return Users.Values;
         }
 
         public Session(string owner, string sessionId, string userId)
@@ -95,7 +90,7 @@ namespace BetterPointingPoker.Server.Web.Models
 
         public void ShowVotes()
         {
-            // either send here Users-votes dict or return it up
+            VotesVisible = true;
         }
 
         public void KeepAlive(string userId)

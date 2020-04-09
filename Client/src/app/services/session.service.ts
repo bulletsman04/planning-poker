@@ -6,7 +6,6 @@ import { SignalRService } from './signal-r.service';
   providedIn: 'root'
 })
 export class SessionService {
-
   public average: number;
   public sessionId: string;
   // tslint:disable-next-line: variable-name
@@ -52,6 +51,10 @@ export class SessionService {
     let user = this._users.find(u => u.nickName === this.user);
     user.voteValue = value;
     this.signalR.sendRequest('manage-session', 'Vote', this.sessionId, value);
+  }
+
+  showVotes() {
+    this.signalR.sendRequest('manage-session', 'ShowVotes', this.sessionId);
   }
 
 

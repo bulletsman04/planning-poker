@@ -11,7 +11,7 @@
   </table>
 </div>
 <div>
-  <button>Show votes</button>
+  <button (click)="showVotes()">Show votes</button>
   <button>Clear votes</button>
   <button *ngFor="let val of voteOptions" (click)="vote(val)">{{val}}</button>
 </div>
