@@ -3,6 +3,8 @@ import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms'
 import { visitAll } from '@angular/compiler';
 import { SignalRService } from '../services/signal-r.service';
 import { Router } from '@angular/router';
+import { SessionService } from '../services/session.service';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-join-screen',
@@ -12,8 +14,15 @@ import { Router } from '@angular/router';
 export class JoinScreenComponent implements OnInit {
   joinError: string = null;
   form: FormGroup;
+  private sentNickname: string;
+  private sentSessionId: string;
 
-  constructor(private signalR: SignalRService, private router: Router, private formBuilder: FormBuilder) { }
+  constructor(
+    private signalR: SignalRService,
+    private router: Router,
+    private formBuilder: FormBuilder,
+    private session: SessionService
+    ) { }
 
   ngOnInit(): void {
 
@@ -22,8 +31,8 @@ export class JoinScreenComponent implements OnInit {
       nick: [null, Validators.required],
     });
 
-    this.signalR.createConnection('start-session', 'start-session');
-    this.signalR.registerHandler('start-session', 'JoinSession', this.joinSessionHandler.bind(this));
+    this.signalR.createConnection('manage-session', 'manage-session');
+    this.signalR.registerHandler('manage-session', 'JoinSession', this.joinSessionHandler.bind(this));
   }
 
   getSessionErrorMessage() {
@@ -31,7 +40,7 @@ export class JoinScreenComponent implements OnInit {
       return 'You must enter a value';
     }
 
-    if(this.form.get('sessionId').hasError('minlength') ||this.form.get('sessionId').hasError('maxlength')){
+    if(this.form.get('sessionId').hasError('minlength') || this.form.get('sessionId').hasError('maxlength')){
       return 'Session id length should be 8.';
     }
 
@@ -47,11 +56,14 @@ export class JoinScreenComponent implements OnInit {
   }
 
   joinSession(){
-    this.signalR.sendRequest('start-session', 'JoinSession', this.form.get('nick').value, this.form.get('sessionId').value);
+    this.sentNickname = this.form.get('nick').value;
+    this.sentSessionId = this.form.get('sessionId').value;
+    this.signalR.sendRequest('manage-session', 'JoinSession', this.sentNickname, this.sentSessionId);
   }
 
   joinSessionHandler(joined: boolean, error: string) {
-    if(joined){
+    if (joined){
+      this.session.initialize(this.sentSessionId, this.sentNickname);
       this.router.navigate(['/', 'session']);
     }
     else{
