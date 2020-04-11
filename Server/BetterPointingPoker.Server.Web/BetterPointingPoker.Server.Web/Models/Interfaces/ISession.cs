@@ -9,6 +9,7 @@ namespace BetterPointingPoker.Server.Web.Models.Interfaces
     {
         public IDictionary<string, IUser> Users { get; }
         bool VotesVisible { get; set; }
+        public double? Average { get; set; }
         (bool canJoin, string error) CanJoinSession(string userId);
         (bool joined, string error) JoinSession(string nickname, string userId);
         bool LeaveSession(string userId);

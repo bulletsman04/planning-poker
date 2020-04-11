@@ -13,7 +13,7 @@ export class SessionMainComponent implements OnInit {
   public voteOptions: number[];
 
   constructor(private signalR: SignalRService, public session: SessionService) {
-    this.voteOptions = [0, 0.5, 1];
+    this.voteOptions = [null, 0, 0.5, 1];
     let nextValue = 2;
     let length;
     while(nextValue < 40){

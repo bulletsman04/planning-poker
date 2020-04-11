@@ -10,7 +10,7 @@ namespace BetterPointingPoker.Server.Web.Models
     {
         private IUser _owner;
 
-        public double Average { get; set; }
+        public double? Average { get; set; }
         public string SessionId { get; set; }
         public bool VotesVisible { get; set; }
 
@@ -70,6 +70,10 @@ namespace BetterPointingPoker.Server.Web.Models
         public void Vote(string userId, double? vote)
         {
             Users[userId].Vote(vote);
+            if (VotesVisible)
+            {
+                CalculateAverage();
+            }
             // notify others here or in SessionManager
         }
 
@@ -85,12 +89,15 @@ namespace BetterPointingPoker.Server.Web.Models
             {
                 user.ClearVote();
             }
+
+            Average = null;
             // notify others here or in SessionManager
         }
 
         public void ShowVotes()
         {
             VotesVisible = true;
+            CalculateAverage();
         }
 
         public void KeepAlive(string userId)
@@ -100,6 +107,23 @@ namespace BetterPointingPoker.Server.Web.Models
             {
                 user.LastUpdated = DateTime.Now;
             }
+        }
+
+        private void CalculateAverage()
+        {
+            double sum = 0;
+            double counter = 0;
+
+            foreach (var user in Users.Values)
+            {
+                if (user.Voted && user.VoteValue != null)
+                {
+                    counter++;
+                    sum += (double)user.VoteValue;
+                }
+            }
+
+            Average = sum / counter;
         }
     }
 }

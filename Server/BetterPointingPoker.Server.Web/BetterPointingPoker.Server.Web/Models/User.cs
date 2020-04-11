@@ -34,6 +34,7 @@ namespace BetterPointingPoker.Server.Web.Models
 
         public void ClearVote()
         {
+            VoteValue = null;
             Voted = false;
         }
     }

@@ -181,7 +181,7 @@ namespace BetterPointingPoker.Server.Web.Services
                         NickName = u.NickName,
                         VoteValue = session.VotesVisible || user.Id == u.Id ? u.VoteValue : null,
                         Voted = u.Voted
-                    }));
+                    }), session.Average);
             }
         }
     }

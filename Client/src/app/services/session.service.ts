@@ -43,11 +43,14 @@ export class SessionService {
     this.signalR.sendRequest('manage-session', 'LeaveSession', this.sessionId);
   }
 
-  private sessionInfoHandler(users: User[]){
+  private sessionInfoHandler(users: User[], average: number){
+    debugger;
     this._users = users;
+    this.average = average;
   }
 
   vote(value: number) {
+    debugger;
     let user = this._users.find(u => u.nickName === this.user);
     user.voteValue = value;
     this.signalR.sendRequest('manage-session', 'Vote', this.sessionId, value);

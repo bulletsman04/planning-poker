@@ -44,7 +44,7 @@ namespace BetterPointingPoker.Server.Web.Hubs
             _sessionManager.KeepAlive(Context.ConnectionId, sessionId);
         }
 
-        public void Vote(string sessionId, double voteValue)
+        public void Vote(string sessionId, double? voteValue)
         {
             _sessionManager.Vote(Context.ConnectionId, sessionId, voteValue);
         }
