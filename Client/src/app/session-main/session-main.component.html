@@ -1,4 +1,7 @@
 <div class="content">
+  <div class="session-id">
+    Session ID: {{session.sessionId}}
+  </div>
   <div class="buttons">
     <button mat-mini-fab *ngFor="let val of voteOptions" (click)="vote(val)">{{val !== null ? val : '?'}}</button>
   </div>

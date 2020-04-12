@@ -35,7 +35,6 @@ export class CreateSessionComponent implements OnInit {
   }
 
   sessionStarted(sessionId){
-    alert(sessionId)
     this.session.initialize(sessionId, this.nick.value);
     this.router.navigate(['/', 'session']);
   }
