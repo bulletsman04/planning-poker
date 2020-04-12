@@ -9,6 +9,11 @@
   margin-top: 50px;
   display: flex;
   flex-wrap: wrap;
+
+  .responsiveHeight(700px,{
+    margin-top: 20px;
+    height: 40px;
+  });
 }
 
 .user{
@@ -19,6 +24,12 @@
   .responsive(1000px, {
     min-width:150px;
     width: auto;
+  });
+
+  .responsiveHeight(700px,{
+    font-size: 8.5pt;
+    padding: 0px;
+    justify-content: space-around;
   });
 }
 
@@ -40,6 +51,9 @@ ngx-flip{
   });
   height: 50px;
 
+  .responsiveHeight(700px,{
+    height: 40px;
+  });
 }
 
 .buttons {
@@ -64,6 +78,10 @@ ngx-flip{
   .responsive(1000px, {
     padding-left: 0px;
   });
+
+  .responsiveHeight(700px,{
+    margin: 0px;
+  });
 }
 
 .content{
@@ -78,3 +96,4 @@ ngx-flip{
     width: 100vw;
   });
 }
+
