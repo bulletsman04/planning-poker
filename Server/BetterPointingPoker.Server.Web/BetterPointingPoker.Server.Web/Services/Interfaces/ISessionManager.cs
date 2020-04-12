@@ -12,7 +12,6 @@ namespace BetterPointingPoker.Server.Web.Services.Interfaces
         (bool joined, string error) JoinSession(string nickname, string sessionId, string userId);
         bool LeaveSession(string userId, string sessionId);
         void Vote(string userId, string sessionId, double? vote);
-        object GetSessionInfo(string sessionId, string userId);
         void ClearVote(string userId, string sessionId);
         void ClearAllVotes(string sessionId);
         void ShowVotes(string sessionId);

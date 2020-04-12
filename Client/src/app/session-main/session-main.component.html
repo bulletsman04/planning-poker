@@ -23,7 +23,7 @@
   </div>
   <!-- *ngIf="session.average"  -->
   <div class="stats">
-    Average: {{session.average}}
+    Average: {{session.average !== null ? session.average : '?'}}
   </div>
   <div class="buttons">
     <button mat-raised-button color="primary" (click)="showVotes()">Show votes</button>

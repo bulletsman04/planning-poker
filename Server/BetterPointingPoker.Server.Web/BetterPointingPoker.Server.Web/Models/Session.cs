@@ -25,6 +25,7 @@ namespace BetterPointingPoker.Server.Web.Models
         {
             Users = new Dictionary<string, IUser>();
             SessionId = sessionId;
+            Average = null;
             _owner = new User(owner, userId);
             Users.Add(userId, _owner);
         }

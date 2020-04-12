@@ -28,7 +28,7 @@ namespace BetterPointingPoker.Server.Web.Services
             var id = guid.ToString().Split('-')[0];
             var session = new Session(creator, id, userId);
             Sessions.Add(id, session);
-
+            SendToAll(session);
             return id;
         }
 
@@ -125,23 +125,6 @@ namespace BetterPointingPoker.Server.Web.Services
         public void HideVotes(string sessionId)
         {
             // send info to hide votes (but need users here...)
-        }
-
-        public object GetSessionInfo(string sessionId, string userId)
-        {
-            bool sessionExists = Sessions.ContainsKey(sessionId);
-            if (!sessionExists)
-            {
-                return null;
-            }
-            var session = Sessions[sessionId];
-
-            return session.GetUsersList().Select(user => new User()
-            {
-                NickName = user.NickName,
-                VoteValue = session.VotesVisible || user.Id == userId ? user.VoteValue : null,
-                Voted = user.Voted
-            });
         }
 
         public void KeepAlive(string userId, string sessionId)

@@ -28,12 +28,6 @@ namespace BetterPointingPoker.Server.Web.Hubs
             Clients.Caller.SendAsync("JoinSession", joinedWithError.joined, joinedWithError.error);
         }
 
-        public void SessionInfo(string sessionId)
-        {
-            var info = _sessionManager.GetSessionInfo(sessionId, Context.ConnectionId);
-            Clients.Caller.SendAsync("SessionInfo", info);
-        }
-
         public void LeaveSession(string sessionId)
         {
             _sessionManager.LeaveSession(Context.ConnectionId, sessionId);

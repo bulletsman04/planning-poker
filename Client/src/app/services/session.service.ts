@@ -18,7 +18,7 @@ export class SessionService {
     this.signalR.registerHandler('manage-session', 'SessionInfo', this.sessionInfoHandler.bind(this));
 
 
-    this.average = 0;
+    this.average = null;
     this._users = [];
     // const sessionLS = JSON.parse(localStorage.getItem('sessionId'));
 
@@ -33,7 +33,6 @@ export class SessionService {
     this.sessionId = sessionId;
     this.user = user;
     localStorage.setItem('sessionId', JSON.stringify(sessionId));
-    this.signalR.sendRequest('manage-session', 'SessionInfo', sessionId);
     setInterval(() => {
       this.signalR.sendRequest('manage-session', 'KeepAlive', sessionId);
     }, 5000);
