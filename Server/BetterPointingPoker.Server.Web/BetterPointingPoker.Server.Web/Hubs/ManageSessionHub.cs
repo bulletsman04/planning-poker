@@ -53,5 +53,10 @@ namespace BetterPointingPoker.Server.Web.Hubs
         {
             _sessionManager.ShowVotes(sessionId);
         }
+
+        public void ClearVotes(string sessionId)
+        {
+            _sessionManager.ClearAllVotes(sessionId);
+        }
     }
 }

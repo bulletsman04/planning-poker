@@ -91,6 +91,7 @@ namespace BetterPointingPoker.Server.Web.Models
             }
 
             Average = null;
+            VotesVisible = false;
             // notify others here or in SessionManager
         }
 

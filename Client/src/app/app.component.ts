@@ -12,7 +12,6 @@ export class AppComponent {
   constructor(private session: SessionService){}
 
   homeClick(){
-    debugger;
     this.session.leaveSession();
   }
 

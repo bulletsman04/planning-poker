@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SignalRService } from '../services/signal-r.service';
 import { User } from '../models/user';
 import { SessionService } from '../services/session.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-session-main',
@@ -11,8 +12,15 @@ import { SessionService } from '../services/session.service';
 export class SessionMainComponent implements OnInit {
 
   public voteOptions: number[];
+  public usersRows: number;
+  private userElementsHeight: number = 50;
 
-  constructor(private signalR: SignalRService, public session: SessionService) {
+  constructor(private signalR: SignalRService, public session: SessionService, private router: Router) {
+
+    if(!session.sessionId) {
+      this.router.navigate(['/']);
+    }
+
     this.voteOptions = [null, 0, 0.5, 1];
     let nextValue = 2;
     let length;
@@ -22,6 +30,8 @@ export class SessionMainComponent implements OnInit {
       nextValue = this.voteOptions[length - 2] + this.voteOptions[length - 1];
     }
 
+    const height = window.innerHeight - 150;
+    this.usersRows = Math.floor(height / this.userElementsHeight);
   }
 
   ngOnInit(): void {
@@ -39,5 +49,9 @@ export class SessionMainComponent implements OnInit {
 
   public showVotes(){
     this.session.showVotes();
+  }
+
+  public clearVotes(){
+    this.session.clearVotes();
   }
 }

@@ -28,7 +28,7 @@ export class JoinScreenComponent implements OnInit {
 
     this.form = this.formBuilder.group({
       sessionId: [null, [Validators.required, Validators.minLength(8), Validators.maxLength(8)]],
-      nick: [null, Validators.required],
+      nick: [null, [Validators.required, Validators.maxLength(10)]],
     });
 
     this.signalR.createConnection('manage-session', 'manage-session');
@@ -43,13 +43,16 @@ export class JoinScreenComponent implements OnInit {
     if(this.form.get('sessionId').hasError('minlength') || this.form.get('sessionId').hasError('maxlength')){
       return 'Session id length should be 8.';
     }
-
     return '';
   }
 
   getNickErrorMessage() {
     if (this.form.get('nick').hasError('required')) {
       return 'You must enter a value';
+    }
+
+    if (this.form.get('nick').hasError('maxlength')) {
+      return 'Nick can have maximum 10 characters.';
     }
 
     return '';

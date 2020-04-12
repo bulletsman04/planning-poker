@@ -10,7 +10,7 @@ import { SessionService } from '../services/session.service';
   styleUrls: ['./create-session.component.less']
 })
 export class CreateSessionComponent implements OnInit {
-  nick = new FormControl('', [Validators.required]);
+  nick = new FormControl('', [Validators.required, Validators.maxLength(10)]);
   constructor(private signalR: SignalRService, private router: Router, private session: SessionService) { }
 
   ngOnInit(): void {
@@ -21,6 +21,10 @@ export class CreateSessionComponent implements OnInit {
   getErrorMessage() {
     if (this.nick.hasError('required')) {
       return 'You must enter a value';
+    }
+
+    if (this.nick.hasError('maxlength')) {
+      return 'Nick can have maximum 10 characters.';
     }
 
     return '';

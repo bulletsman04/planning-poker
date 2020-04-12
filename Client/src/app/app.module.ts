@@ -14,6 +14,8 @@ import { StartScreenComponent } from './start-screen/start-screen.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { SessionMainComponent } from './session-main/session-main.component';
 import {MatIconModule} from '@angular/material/icon';
+import { FlipModule } from 'ngx-flip';
+import {MatChipsModule} from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import {MatIconModule} from '@angular/material/icon';
     MatButtonModule,
     MatIconModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+     FlipModule,
+     MatChipsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

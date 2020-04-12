@@ -6,6 +6,7 @@ import { SignalRService } from './signal-r.service';
   providedIn: 'root'
 })
 export class SessionService {
+
   public average: number;
   public sessionId: string;
   // tslint:disable-next-line: variable-name
@@ -44,13 +45,11 @@ export class SessionService {
   }
 
   private sessionInfoHandler(users: User[], average: number){
-    debugger;
     this._users = users;
     this.average = average;
   }
 
   vote(value: number) {
-    debugger;
     let user = this._users.find(u => u.nickName === this.user);
     user.voteValue = value;
     this.signalR.sendRequest('manage-session', 'Vote', this.sessionId, value);
@@ -60,6 +59,9 @@ export class SessionService {
     this.signalR.sendRequest('manage-session', 'ShowVotes', this.sessionId);
   }
 
+  clearVotes() {
+    this.signalR.sendRequest('manage-session', 'ClearVotes', this.sessionId);
+  }
 
   get users(){
     return this._users;

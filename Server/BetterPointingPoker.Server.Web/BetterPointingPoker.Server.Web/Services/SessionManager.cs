@@ -106,6 +106,7 @@ namespace BetterPointingPoker.Server.Web.Services
             {
                 var session = Sessions[sessionId];
                 session.ClearAllVotes();
+                SendToAll(session);
             }
         }
 
