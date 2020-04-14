@@ -46,6 +46,27 @@ export class SessionService {
   private sessionInfoHandler(users: User[], average: number){
     this._users = users;
     this.average = average;
+
+    if(average !== null){
+      this.addUsersColors();
+    }
+  }
+
+  addUsersColors() {
+    this._users.forEach(user => {
+      if(user.voteValue === null){
+        user.type = 'out';
+      }
+      else if(user.voteValue <= 0.5 * this.average){
+        user.type = 'low';
+      }
+      else if(user.voteValue >= 1.5 * this.average){
+        user.type = 'high';
+      }
+      else {
+        user.type = 'mean';
+      }
+    });
   }
 
   vote(value: number) {
