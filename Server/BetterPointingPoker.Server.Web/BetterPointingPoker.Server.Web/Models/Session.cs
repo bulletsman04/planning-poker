@@ -125,7 +125,13 @@ namespace BetterPointingPoker.Server.Web.Models
                 }
             }
 
-            Average = Math.Round(sum / counter,2);
+            if(counter == 0)
+            {
+                Average = null;
+                return;
+            }
+            
+            Average = Math.Round(sum / counter, 2);
             
         }
     }
