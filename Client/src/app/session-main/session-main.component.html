@@ -6,23 +6,7 @@
     <button mat-mini-fab *ngFor="let val of voteOptions" (click)="vote(val)">{{val !== null ? val : '?'}}</button>
   </div>
   <div class="users">
-    <div class="users-elem" *ngFor="let user of session.users">
-      <ngx-flip [class.flip-two-cols] = "this.usersRows > 0">
-        <div class="front-card" front>
-          <div class="front-content">
-            <mat-chip-list>
-              <mat-chip class="user" [class.user-two-cols] = "this.usersRows > 0" color="primary" selected><span>{{user.nickName}}</span>
-                <span>{{user.voteValue !== null ? user.voteValue : '?'}}</span></mat-chip>
-            </mat-chip-list>
-          </div>
-        </div>
-        <div class="back-content" back>
-          <div class="back-content">
-
-          </div>
-        </div>
-      </ngx-flip>
-    </div>
+    <app-user-element *ngFor="let user of session.users" [user]=user></app-user-element>
   </div>
   <!-- *ngIf="session.average"  -->
   <div class="stats">

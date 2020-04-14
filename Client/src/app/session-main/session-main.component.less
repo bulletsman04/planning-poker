@@ -16,28 +16,7 @@
   });
 }
 
-.user{
-  min-width: 200px;
-  font-size: 11pt;
-  padding: 20px;
-  justify-content: space-between;
-  .responsive(1000px, {
-    min-width:150px;
-    width: auto;
-  });
-
-  .responsiveHeight(700px,{
-    font-size: 8.5pt;
-    padding: 0px;
-    justify-content: space-around;
-  });
-}
-
-.session-id{
-  color: #ddcaff;
-}
-
-.users-elem{
+app-user-element{
   display: flex;
   width: 50%;
   justify-content: flex-end;
@@ -47,17 +26,10 @@
   padding: 0 10px;
 }
 
-ngx-flip{
-  min-width: 200px;
-  .responsive(1000px, {
-    min-width: 150px;
-  });
-  height: 50px;
-
-  .responsiveHeight(700px,{
-    height: 40px;
-  });
+.session-id{
+  color: #ddcaff;
 }
+
 
 .buttons {
   margin-top: 20px;

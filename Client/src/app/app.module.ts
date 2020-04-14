@@ -11,6 +11,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import { CreateSessionComponent } from './create-session/create-session.component';
 import { StartScreenComponent } from './start-screen/start-screen.component';
+import { UserElementComponent} from './user-element/user-element.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { SessionMainComponent } from './session-main/session-main.component';
 import {MatIconModule} from '@angular/material/icon';
@@ -23,7 +24,8 @@ import {MatChipsModule} from '@angular/material/chips';
     JoinScreenComponent,
     CreateSessionComponent,
     StartScreenComponent,
-    SessionMainComponent
+    SessionMainComponent,
+    UserElementComponent
   ],
   imports: [
     BrowserModule,
