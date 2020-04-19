@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SessionService } from './services/session.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Client';
+
+  constructor(private session: SessionService){}
+
+  homeClick(){
+    this.session.leaveSession();
+  }
+
 }
+
+

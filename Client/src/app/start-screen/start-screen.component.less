@@ -1,0 +1,19 @@
+@import '../shared-styles/shared.less';
+
+.dialog {
+
+  .responsive(500px, {
+    flex-wrap: wrap;
+  });
+
+  button {
+    width    : 130px;
+    height   : 60px;
+    font-size: large;
+    margin   : 20px;
+
+    .responsive(500px, {
+      width: 100%;
+    });
+  }
+}

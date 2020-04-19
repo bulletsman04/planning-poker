@@ -1,0 +1,19 @@
+<div class="content">
+  <div class="session-id">
+    Session ID: {{session.sessionId}}
+  </div>
+  <div class="buttons">
+    <button mat-mini-fab *ngFor="let val of voteOptions" (click)="vote(val)">{{val !== null ? val : '?'}}</button>
+  </div>
+  <div class="users">
+    <app-user-element *ngFor="let user of session.users" [user]=user></app-user-element>
+  </div>
+  <!-- *ngIf="session.average"  -->
+  <div class="stats">
+    Average: {{session.average !== null ? session.average : '?'}}
+  </div>
+  <div class="buttons">
+    <button mat-raised-button color="primary" (click)="showVotes()">Show votes</button>
+    <button mat-raised-button color="primary" (click)="clearVotes()">Clear votes</button>
+  </div>
+</div>

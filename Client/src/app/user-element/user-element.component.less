@@ -1,0 +1,19 @@
+@import '../shared-styles/shared.less';
+
+
+.user{
+  min-width: 200px;
+  font-size: 11pt;
+  padding: 20px;
+  justify-content: space-between;
+  .responsive(1000px, {
+    min-width:150px;
+    width: auto;
+  });
+
+  .responsiveHeight(700px,{
+    font-size: 8.5pt;
+    padding: 0px;
+    justify-content: space-around;
+  });
+}

@@ -1,0 +1,11 @@
+.responsive(@maxWidth; @rules) {
+  @media (max-width: @maxWidth) {
+      @rules();
+  }
+}
+
+.responsiveHeight(@maxHeigth; @rules) {
+  @media (max-height: @maxHeigth) {
+      @rules();
+  }
+}
