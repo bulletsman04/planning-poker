@@ -3,9 +3,6 @@
 
 .user{
   margin-top: 10px !important;
-  border-color: #673ab7;
-  border-style: solid;
-  border-width: 2px;
   min-width: 200px;
   font-size: 11pt;
   padding: 20px;
@@ -20,20 +17,26 @@
     padding: 0px;
     justify-content: space-around;
   });
+
+  transition: transform 2s;
+}
+
+.voted{
+  transform: scale(1.1,1.1);
 }
 
 .low{
-  border-color: blue;
+  color:#9393ff;
 }
 
 .mean{
-  border-color: green;
+  color: #42c742;
 }
 
 .high{
-  border-color:red;
+  color:#ff6565;
 }
 
 .out{
-  border-color:black;
+  color:black;
 }

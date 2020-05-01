@@ -1,8 +1,8 @@
 <mat-chip-list>
-  <mat-chip class="user" [ngClass]="user.type"
+  <mat-chip class="user" [class.voted]="user.voted"
   color="primary" selected>
-    <span>{{user.nickName}}</span>
-    <span>{{user.voteValue !== null ? user.voteValue : '?'}}</span>
+    <span [ngClass]="user.type">{{user.nickName}}</span>
+    <span [ngClass]="user.type">{{user.voteValue !== null ? user.voteValue : '?'}}</span>
     </mat-chip>
 </mat-chip-list>
 
