@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { SignalRService } from '../services/signal-r.service';
 import { User } from '../models/user';
 import { SessionService } from '../services/session.service';
-import { Router } from '@angular/router';
+import { Router} from '@angular/router';
+import { TooltipPosition } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-session-main',
@@ -14,8 +15,17 @@ export class SessionMainComponent implements OnInit {
   public voteOptions: number[];
   public usersRows: number;
   private userElementsHeight: number = 50;
+  public sessionLink: string;
+  public tooltipPosition = 'right';
 
-  constructor(private signalR: SignalRService, public session: SessionService, private router: Router) {
+  constructor(
+    private signalR: SignalRService,
+    public session: SessionService,
+    private router: Router
+    ) {
+
+    const origin = window.location.origin;
+    this.sessionLink = `${origin}/join/${this.session.sessionId}`;
 
     if(!session.sessionId) {
       this.router.navigate(['/']);

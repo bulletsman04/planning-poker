@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: 'start', component: StartScreenComponent},
   { path: 'create', component: CreateSessionComponent},
   { path: 'join', component: JoinScreenComponent},
+  { path: 'join/:id', component: JoinScreenComponent},
   { path: 'session', component: SessionMainComponent}
 ];
 

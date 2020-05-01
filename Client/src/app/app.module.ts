@@ -17,6 +17,8 @@ import { SessionMainComponent } from './session-main/session-main.component';
 import {MatIconModule} from '@angular/material/icon';
 import { FlipModule } from 'ngx-flip';
 import {MatChipsModule} from '@angular/material/chips';
+import {ClipboardModule} from '@angular/cdk/clipboard';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import {MatChipsModule} from '@angular/material/chips';
     FormsModule,
     ReactiveFormsModule,
      FlipModule,
-     MatChipsModule
+     MatChipsModule,
+     ClipboardModule,
+     MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

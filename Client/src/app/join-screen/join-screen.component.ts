@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { visitAll } from '@angular/compiler';
 import { SignalRService } from '../services/signal-r.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { SessionService } from '../services/session.service';
 import { User } from '../models/user';
 
@@ -21,8 +21,10 @@ export class JoinScreenComponent implements OnInit {
     private signalR: SignalRService,
     private router: Router,
     private formBuilder: FormBuilder,
-    private session: SessionService
-    ) { }
+    private session: SessionService,
+    private route: ActivatedRoute
+    ) {
+     }
 
   ngOnInit(): void {
 
@@ -30,6 +32,12 @@ export class JoinScreenComponent implements OnInit {
       sessionId: [null, [Validators.required, Validators.minLength(8), Validators.maxLength(8)]],
       nick: [null, [Validators.required, Validators.maxLength(10)]],
     });
+
+    const sessionId = this.route.snapshot.paramMap.get('id');
+
+    if (sessionId){
+      this.form.get('sessionId').setValue(sessionId);
+    }
 
     this.signalR.createConnection('manage-session', 'manage-session');
     this.signalR.registerHandler('manage-session', 'JoinSession', this.joinSessionHandler.bind(this));
