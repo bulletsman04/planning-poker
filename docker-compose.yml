@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  client:
+    ports:
+      - 8889:80
+    container_name: client
+    hostname: client
+    image: planningpokerapp.azurecr.io/client:latest
+  server:
+    ports:
+      - 8888:5000
+    container_name: server
+    hostname: server
+    image: planningpokerapp.azurecr.io/server:latest
+  # reverse:
+  #   container_name: reverse
+  #   hostname: reverse
+  #   image: nginx
+  #   ports:
+  #     - 80:80
+  #     - 443:443
+  #   volumes:
+  #     - /usr/config:/etc/nginx
+  #     - /etc/letsencrypt/live/planningpoker.northeurope.cloudapp.azure.com:/etc/ssl/private
