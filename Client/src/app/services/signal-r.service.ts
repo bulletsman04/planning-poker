@@ -32,6 +32,7 @@ export class SignalRService {
 
     this.connections[key] = this.connections[key]
       .configureLogging(signalR.LogLevel.Information)
+      .withAutomaticReconnect([0, 0, 1, 1])
       .build();
 
 
