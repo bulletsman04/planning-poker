@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import * as signalR from '@aspnet/signalr';
+import * as signalR from '@microsoft/signalr';
 import { apiUrl } from '../../environments/environment';
 
 @Injectable({
@@ -27,12 +27,12 @@ export class SignalRService {
     this.connections[key] = new signalR.HubConnectionBuilder();
 
 
-    this.connections[key] = this.connections[key].withUrl(
-      `${apiUrl}/${hubName}`);
+    this.connections[key] = this.connections[key]
+    .withUrl(`${apiUrl}/${hubName}`)
+    .withAutomaticReconnect([0, 0, 1, 1]);
 
     this.connections[key] = this.connections[key]
       .configureLogging(signalR.LogLevel.Information)
-      .withAutomaticReconnect([0, 0, 1, 1])
       .build();
 
 
