@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as signalR from '@aspnet/signalr';
+import { apiUrl } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,7 @@ export class SignalRService {
 
 
     this.connections[key] = this.connections[key].withUrl(
-      `https://planningpoker.northeurope.cloudapp.azure.com/api/${hubName}`);
+      `${apiUrl}/${hubName}`);
 
     this.connections[key] = this.connections[key]
       .configureLogging(signalR.LogLevel.Information)

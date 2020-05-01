@@ -25,7 +25,7 @@ namespace BetterPointingPoker.Server.Web
                     .AllowAnyMethod()
                     .AllowAnyHeader()
                     .AllowCredentials()
-                    .WithOrigins("http://40.127.216.66:8889", "https://planningpoker.northeurope.cloudapp.azure.com/", "http://planningpoker.northeurope.cloudapp.azure.com/");
+                    .WithOrigins("http://localhost:4200", "https://planningpoker.northeurope.cloudapp.azure.com/");
             }));
         }
 
