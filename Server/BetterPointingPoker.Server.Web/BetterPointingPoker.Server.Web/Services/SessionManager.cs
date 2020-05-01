@@ -14,7 +14,7 @@ namespace BetterPointingPoker.Server.Web.Services
     {
         public IDictionary<string, ISession> Sessions { get; set; }
         private readonly IHubContext<ManageSessionHub> _manageSessionHub;
-        private readonly TimeSpan _maxAfkTime = TimeSpan.FromSeconds(11);
+        private readonly TimeSpan _maxAfkTime = TimeSpan.FromSeconds(4);
 
         public SessionManager(IHubContext<ManageSessionHub> manageSessionHub)
         {

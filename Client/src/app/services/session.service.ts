@@ -35,7 +35,7 @@ export class SessionService {
     localStorage.setItem('sessionId', JSON.stringify(sessionId));
     setInterval(() => {
       this.signalR.sendRequest('manage-session', 'KeepAlive', sessionId);
-    }, 5000);
+    }, 2000);
   }
 
   public leaveSession(){
