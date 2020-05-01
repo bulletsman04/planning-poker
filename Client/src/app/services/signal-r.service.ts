@@ -27,7 +27,7 @@ export class SignalRService {
 
 
     this.connections[key] = this.connections[key].withUrl(
-      `http://localhost:8000/${hubName}`);
+      `https://planningpoker.northeurope.cloudapp.azure.com/api/${hubName}`);
 
     this.connections[key] = this.connections[key]
       .configureLogging(signalR.LogLevel.Information)
