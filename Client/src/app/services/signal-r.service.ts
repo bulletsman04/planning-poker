@@ -49,11 +49,7 @@ export class SignalRService {
 
   public registerHandler(hubKey: string | number, functionName: any, handler: any) {
 
-    for (let i = 0; i < this.events.length; i++) {
-      if (this.events[i].hubKey === hubKey && this.events[i].functionName === functionName) {
-        return;
-      }
-    }
+    this.connections[hubKey].off(functionName);
 
     this.connections[hubKey].on(functionName, handler);
     this.events.push({ hubKey, functionName });

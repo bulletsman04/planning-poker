@@ -9,7 +9,6 @@ export class SessionService {
 
   public average: number;
   public sessionId: string;
-  // tslint:disable-next-line: variable-name
   private _users: User[];
   private user: string;
 
