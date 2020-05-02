@@ -2,9 +2,9 @@
   <form class="dialog-form">
     <mat-form-field class="full-width">
       <mat-label>Nick</mat-label>
-      <input autocomplete="off" matInput  [formControl]="nick">
+      <input autocomplete="off" matInput [formControl]="nick">
       <mat-error *ngIf="nick.invalid">{{getErrorMessage()}}</mat-error>
     </mat-form-field>
-    <button type="button" mat-raised-button color="primary" [disabled]="nick.invalid" (click)="createSession()">Create</button>
+    <button type="button" mat-raised-button [disabled]="nick.invalid" (click)="createSession()">Create</button>
   </form>
 </div>
