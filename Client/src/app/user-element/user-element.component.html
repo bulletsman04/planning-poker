@@ -1,7 +1,7 @@
 <mat-chip-list>
   <mat-chip class="user" [class.voted]="user.voted">
     <span [ngClass]="user.type">{{user.nickName}}</span>
-    <span [ngClass]="user.type">{{user.voteValue !== null ? user.voteValue : '?'}}</span>
+    <span [ngClass]="user.type">{{user.voteValue !== null ? user.voteValue : user.voted ? '?' : ''}}</span>
     </mat-chip>
 </mat-chip-list>
 
