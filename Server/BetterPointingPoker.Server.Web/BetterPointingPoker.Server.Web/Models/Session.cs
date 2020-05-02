@@ -8,7 +8,7 @@ namespace BetterPointingPoker.Server.Web.Models
 {
     public class Session : ISession
     {
-        private IUser _owner;
+        private readonly IUser _owner;
 
         public double? Average { get; set; }
         public string SessionId { get; set; }

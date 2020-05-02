@@ -65,7 +65,7 @@ namespace BetterPointingPoker.Server.Web.Services
             return result;
         }
 
-        public (bool canJoin, string error) CanJoinSession(string userId, string sessionId)
+        public (bool canJoin, string error) CanJoinSession(string nickname, string sessionId)
         {
             bool sessionExists = Sessions.ContainsKey(sessionId);
             if (!sessionExists)
@@ -73,7 +73,7 @@ namespace BetterPointingPoker.Server.Web.Services
                 return (false, $"Session with id {sessionId} does not exist");
             }
 
-            var canJoin = Sessions[sessionId].CanJoinSession(userId);
+            var canJoin = Sessions[sessionId].CanJoinSession(nickname);
 
             return canJoin;
         }
