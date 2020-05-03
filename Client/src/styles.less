@@ -4,8 +4,8 @@
 
 html, body { height: 100%;  }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
-  // background: rgb(2,0,36);
-  // background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(68,9,140,1) 35%, rgba(96,4,182,1) 100%);
+  background: rgb(63,81,181);
+  background: linear-gradient(230deg, rgba(63,81,181,1) 0%, rgba(11,22,84,1) 100%);
 }
 
 
@@ -19,6 +19,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
 
   button{
     width: 80px;
+    &:disabled {
+      color: #b6b6b6 !important;
+    }
   }
 
   .responsive(500px, {
@@ -44,7 +47,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
   padding: 25px 20px;
 
   mat-label, input {
-    color: black;
+    color: white;
   }
 
   .responsive(500px, {
