@@ -15,7 +15,6 @@ import { UserElementComponent} from './user-element/user-element.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { SessionMainComponent } from './session-main/session-main.component';
 import {MatIconModule} from '@angular/material/icon';
-import { FlipModule } from 'ngx-flip';
 import {MatChipsModule} from '@angular/material/chips';
 import {ClipboardModule} from '@angular/cdk/clipboard';
 import {MatTooltipModule} from '@angular/material/tooltip';
@@ -41,7 +40,6 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatIconModule,
     FormsModule,
     ReactiveFormsModule,
-     FlipModule,
      MatChipsModule,
      ClipboardModule,
      MatTooltipModule
