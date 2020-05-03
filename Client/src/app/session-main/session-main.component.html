@@ -9,7 +9,7 @@
     <button mat-mini-fab color="primary" *ngFor="let val of voteOptions" (click)="vote(val)">{{val !== null ? val : '?'}}</button>
   </div>
   <div class="users">
-    <app-user-element *ngFor="let user of session.users" [user]=user></app-user-element>
+    <app-user-element *ngFor="let user of session.users" [isMe]="this.session.user === user.nickName" [showVotes]="this.session.average !== null" [user]=user></app-user-element>
   </div>
   <!-- *ngIf="session.average"  -->
   <div class="stats">

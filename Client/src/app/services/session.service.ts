@@ -10,7 +10,7 @@ export class SessionService {
   public average: number;
   public sessionId: string;
   private _users: User[];
-  private user: string;
+  public user: string;
 
   constructor(private signalR: SignalRService) {
     this.signalR.createConnection('manage-session', 'manage-session');

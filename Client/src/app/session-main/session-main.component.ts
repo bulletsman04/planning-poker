@@ -19,7 +19,7 @@ export class SessionMainComponent implements OnInit {
   public tooltipPosition = 'right';
 
   constructor(
-    private signalR: SignalRService,
+    public signalR: SignalRService,
     public session: SessionService,
     private router: Router
     ) {
