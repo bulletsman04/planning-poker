@@ -1,7 +1,7 @@
 <div class="content">
   <div class="session-id">
     <span class="session-id-text">Session ID: {{session.sessionId}}</span>
-    <div class="clipboard-icon-container" title="Copy link to invite others to session." [matTooltipPosition]="tooltipPosition" matTooltip="Copy link to invite others to session.">
+    <div class="clipboard-icon-container" title="Copy link to invite others to session.">
       <img src="assets/clipboard.svg" class="clipboard-icon" [cdkCopyToClipboard]="this.sessionLink" />
     </div>
   </div>
