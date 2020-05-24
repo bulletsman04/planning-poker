@@ -35,4 +35,4 @@ jobs:
         # The folder in the Github repo that holds the source
         folder: Client
         # The location of the Dockerfile; defaults to ./Dockerfile
-        dockerfile: ./Client/Dockerfile
+        dockerfile: Client/Dockerfile
