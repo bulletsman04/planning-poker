@@ -3,7 +3,9 @@ name: Server image push to acr
 on:
   push:
     branches: [ master ]
-
+  pull_request:
+    branches: [ master ]
+    
 jobs:
 
   build:
@@ -12,7 +14,7 @@ jobs:
 
     steps:
     - name: Azure Container Registry Build
-      uses: ams0/acr-task-github-action@v1
+      uses: bulletsman04/acr-task-github-action@7f1ea55
       with:
         # Service Principal with Contributor role on the ACR
         service_principal: ${{ secrets.ACR_SP_NAME }}
