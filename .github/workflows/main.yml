@@ -26,7 +26,6 @@ jobs:
         registry: ${{ secrets.ACR_NAME }}
         # Repository to use
         repository: server
-        image: server
         # Docker image tag, default to the commit SHA
         tag: latest
         # Branch to build from, defaults to master
