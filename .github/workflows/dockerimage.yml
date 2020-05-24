@@ -1,0 +1,33 @@
+name: Client push to acr
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Azure Container Registry Build
+      uses: ams0/acr-task-github-action@v1
+      with:
+        # Service Principal with Contributor role on the ACR
+        service_principal: ${{ secrets.ACR_SP_NAME }}
+        # Service Principal password
+        service_principal_password: ${{ secrets.ACR_SP }}
+        # Azure Container Registry tenant
+        tenant: ${{ secrets.ACR_TENANT }}
+        # The name of the ACR, minus the .azurecr.io
+        registry: ${{ secrets.ACR_NAME }}
+        # Repository to use
+        repository: client
+        image: client
+        # Docker image tag, default to the commit SHA
+        tag: latest
+        # Branch to build from, defaults to master
+        branch: github-actions
+        # The folder in the Github repo that holds the source
+        folder: Client
