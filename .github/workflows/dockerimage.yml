@@ -1,4 +1,4 @@
-name: Client image build
+name: Client push to acr
 
 on:
   push:
