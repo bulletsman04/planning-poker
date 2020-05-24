@@ -3,8 +3,6 @@ name: Client image build
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
 
 jobs:
 
@@ -26,6 +24,7 @@ jobs:
         registry: ${{ secrets.ACR_NAME }}
         # Repository to use
         repository: client
+        image: client
         # Docker image tag, default to the commit SHA
         tag: latest
         # Branch to build from, defaults to master
