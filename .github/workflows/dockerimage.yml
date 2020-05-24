@@ -31,7 +31,7 @@ jobs:
         # Docker image tag, default to the commit SHA
         tag: latest
         # Branch to build from, defaults to master
-        branch: ${GITHUB_REF##*/}
+        branch: ${{github.ref}}
         # The folder in the Github repo that holds the source
         folder: Client
         # The location of the Dockerfile; defaults to ./Dockerfile
