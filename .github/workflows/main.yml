@@ -14,7 +14,7 @@ jobs:
 
     steps:
     - name: Azure Container Registry Build
-      uses: bulletsman04/acr-task-github-action@84ca53c
+      uses: bulletsman04/acr-task-github-action@3d94810
       with:
         # Service Principal with Contributor role on the ACR
         service_principal: ${{ secrets.ACR_SP_NAME }}
